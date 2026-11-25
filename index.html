@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escola de Música Ebenezer Music | Aulas de Música</title>
+  <meta name="description" content="Escola de Música Ebenezer Music — Aulas personalizadas de Bateria, Técnica Vocal, Guitarra, Violão e Violino para todas as idades e níveis." />
+
+  <!-- Google Fonts: Inter, Plus Jakarta Sans, Oswald & Pacifico -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@600;700&family=Pacifico&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+            condensed: ['Oswald', 'sans-serif'],
+            script: ['Pacifico', 'cursive'],
+          },
+          colors: {
+            ebenezer: {
+              blue: '#0B3C91',
+              blueDark: '#082D6E',
+              blueLight: '#EEF4FF',
+              red: '#E11D2A',
+              redDark: '#BE121E',
+              redLight: '#FFF1F2',
+            }
+          },
+          boxShadow: {
+            'studio': '0 12px 36px -8px rgba(11, 60, 145, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04)',
+            'studio-hover': '0 22px 48px -10px rgba(11, 60, 145, 0.16), 0 8px 20px -4px rgba(225, 29, 42, 0.10)',
+            'cta-red': '0 12px 28px -6px rgba(225, 29, 42, 0.42)',
+            'cta-blue': '0 12px 28px -6px rgba(11, 60, 145, 0.36)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* ==========================================================================
+       PURE STUDIO WHITE BASE & CUSTOM ANIMATIONS
+       ========================================================================== */
+    body {
+      background-color: #FFFFFF;
+      color: #0F172A;
+      overflow-x: hidden;
+    }
+
+    /* Animated "Saiba Mais" Button System */
+    .btn-saiba-mais {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, background-color 0.25s ease;
+      will-change: transform;
+    }
+
+    .btn-saiba-mais:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .btn-saiba-mais:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Continuous Diagonal Shimmer Sweep */
+    .btn-saiba-mais::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -75%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.38) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(24deg);
+      animation: shimmerSweep 3.4s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes shimmerSweep {
+      0% {
+        left: -75%;
+      }
+      45%, 100% {
+        left: 145%;
+      }
+    }
+
+    /* Continuous Concentric Pulse Ring Wrapper */
+    .pulse-ring-wrapper {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .pulse-ring-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      border: 2px solid rgba(225, 29, 42, 0.45);
+      animation: pulseRing 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+      pointer-events: none;
+    }
+
+    .pulse-ring-blue::before {
+      border-color: rgba(11, 60, 145, 0.35);
+    }
+
+    @keyframes pulseRing {
+      0% {
+        transform: scale(1);
+        opacity: 0.85;
+      }
+      75%, 100% {
+        transform: scale(1.14, 1.32);
+        opacity: 0;
+      }
+    }
+
+    /* Subtle Floating Animation for Studio Musical Notes */
+    @keyframes floatGentle {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-6px) rotate(2deg);
+      }
+    }
+
+    .animate-float-gentle {
+      animation: floatGentle 4.5s ease-in-out infinite;
+    }
+
+    /* Card Image Zoom & Studio Frame Polish */
+    .course-card:hover .instrument-visual {
+      transform: scale(1.035);
+    }
+
+    .instrument-visual {
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Reveal on Scroll Utility */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+    }
+
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased selection:bg-ebenezer-blue selection:text-white">
+
+  <!-- ========================================================================
+       STICKY NAVIGATION HEADER (PURE STUDIO WHITE)
+       ======================================================================== -->
+  <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 transition-shadow duration-300" id="main-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 sm:h-24">
+
+        <!-- Revitalized Vector Brand Logo (No Assembleia de Deus text/emblem) -->
+        <a href="#inicio" class="flex items-center group focus:outline-none" aria-label="Escola de Música Ebenezer Music - Início">
+          <svg class="h-12 sm:h-14 w-auto transition-transform duration-300 group-hover:scale-[1.02]" viewBox="0 0 430 132" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="headerLogoTitle">
+            <title id="headerLogoTitle">Logo Revitalizada Escola de Música Ebenezer Music</title>
+            <defs>
+              <linearGradient id="ebenezerBlueGrad" x1="12" y1="18" x2="112" y2="118" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#0E4BB5" />
+                <stop offset="100%" stop-color="#092E73" />
+              </linearGradient>
+              <linearGradient id="ebenezerRedGrad" x1="48" y1="12" x2="96" y2="92" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#F42432" />
+                <stop offset="100%" stop-color="#C81420" />
+              </linearGradient>
+              <filter id="logoSoftShadow" x="-10%" y="-10%" width="120%" height="125%">
+                <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#0B3C91" flood-opacity="0.14" />
+              </filter>
+            </defs>
+
+            <!-- Revitalized Royal Blue Incomplete Ring -->
+            <path d="M 82 23.5 A 45 45 0 1 0 107.5 46.5"
+                  stroke="url(#ebenezerBlueGrad)"
+                  stroke-width="14.5"
+                  stroke-linecap="round"
+                  filter="url(#logoSoftShadow)" />
+
+            <!-- Revitalized Crimson Red Eighth Musical Note (Colcheia) -->
+            <g filter="url(#logoSoftShadow)">
+              <!-- Note Head -->
+              <ellipse cx="62" cy="76" rx="18.5" ry="14" transform="rotate(-22 62 76)" fill="url(#ebenezerRedGrad)" />
+              <!-- Inner Gloss Highlight on Note Head -->
+              <ellipse cx="57" cy="72" rx="6.5" ry="3.5" transform="rotate(-22 57 72)" fill="#FFFFFF" fill-opacity="0.28" />
+              <!-- Stem & Dynamic Curved Flag -->
+              <path d="M 76.5 72 L 86 11 C 94 21, 108 31, 105 51 C 103 60, 97 65, 93 66 C 96 56, 96 42, 87 34 L 79.5 76 Z"
+                    fill="url(#ebenezerRedGrad)" />
+            </g>
+
+            <!-- Subtitle: ESCOLA DE MÚSICA -->
+            <text x="130" y="37"
+                  fill="#0B3C91"
+                  font-family="'Oswald', 'Plus Jakarta Sans', sans-serif"
+                  font-weight="700"
+                  font-size="21.5"
+                  letter-spacing="1.6">ESCOLA DE MÚSICA</text>
+
+            <!-- Main Wordmark: EBENEZER -->
+            <text x="128" y="96"
+                  fill="#E11D2A"
+                  font-family="'Oswald', 'Plus Jakarta Sans', sans-serif"
+                  font-weight="700"
+                  font-size="64"
+                  letter-spacing="1.2">EBENEZER</text>
+
+            <!-- Overlapping Script Accent: Music (with clean white halo for studio contrast) -->
+            <text x="276" y="114"
+                  stroke="#FFFFFF"
+                  stroke-width="6"
+                  stroke-linejoin="round"
+                  font-family="'Pacifico', cursive"
+                  font-size="34"
+                  transform="rotate(-4 325 104)">Music</text>
+            <text x="276" y="114"
+                  fill="#0B3C91"
+                  font-family="'Pacifico', cursive"
+                  font-size="34"
+                  transform="rotate(-4 325 104)">Music</text>
+          </svg>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8" aria-label="Navegação Principal">
+          <a href="#inicio" class="text-sm font-semibold text-slate-700 hover:text-ebenezer-blue transition-colors">Início</a>
+          <a href="#cursos" class="text-sm font-semibold text-slate-700 hover:text-ebenezer-blue transition-colors">Nossos Cursos</a>
+          <a href="#metodologia" class="text-sm font-semibold text-slate-700 hover:text-ebenezer-blue transition-colors">Metodologia</a>
+          <a href="#contato" class="text-sm font-semibold text-slate-700 hover:text-ebenezer-blue transition-colors">Contato</a>
+        </nav>
+
+        <!-- Header Animated CTA Button -->
+        <div class="hidden sm:flex items-center">
+          <div class="pulse-ring-wrapper">
+            <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20da%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn-saiba-mais rounded-full bg-ebenezer-red hover:bg-ebenezer-redDark text-white font-display font-bold text-sm px-6 py-3 shadow-cta-red">
+              <!-- WhatsApp Icon -->
+              <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.359a9.93 9.93 0 0 0 4.843 1.258h.004c5.515 0 9.968-4.453 9.968-9.969A9.927 9.927 0 0 0 19.08 4.92 9.914 9.914 0 0 0 12.031 2zm5.822 14.273c-.246.693-1.428 1.326-1.992 1.409-.513.076-1.162.108-1.875-.118-.434-.138-.991-.322-1.703-.63-2.996-1.293-4.953-4.312-5.103-4.512-.15-.2-1.219-1.621-1.219-3.093 0-1.472.771-2.196 1.045-2.496.274-.3.598-.375.797-.375.199 0 .399.002.573.01.184.009.43-.07.673.514.249.599.847 2.07.922 2.22.075.15.125.325.025.524-.1.2-.15.325-.299.5-.15.175-.314.39-.449.524-.15.15-.306.312-.131.612.175.3.776 1.281 1.667 2.075 1.146 1.022 2.112 1.339 2.411 1.489.299.15.474.125.648-.075.175-.2.748-.874.948-1.174.199-.3.399-.25.673-.15.274.1 1.745.823 2.044.973.299.15.499.225.573.35.075.125.075.724-.171 1.417z"/>
+              </svg>
+              <span>Saiba Mais</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn"
+                type="button"
+                class="md:hidden inline-flex items-center justify-center p-2.5 rounded-xl text-slate-700 hover:text-ebenezer-blue hover:bg-slate-100 focus:outline-none transition-colors"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+                aria-label="Abrir menu de navegação">
+          <svg id="icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-3 pb-6 space-y-2 shadow-lg">
+      <a href="#inicio" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-ebenezer-blueLight hover:text-ebenezer-blue">Início</a>
+      <a href="#cursos" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-ebenezer-blueLight hover:text-ebenezer-blue">Nossos Cursos</a>
+      <a href="#metodologia" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-ebenezer-blueLight hover:text-ebenezer-blue">Metodologia</a>
+      <a href="#contato" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-ebenezer-blueLight hover:text-ebenezer-blue">Contato</a>
+      <div class="pt-3 px-2">
+        <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20da%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-saiba-mais w-full rounded-full bg-ebenezer-red hover:bg-ebenezer-redDark text-white font-display font-bold text-base py-3.5 shadow-cta-red">
+          <span>Saiba Mais no WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION (PURE WHITE STUDIO BACKDROP - NO VENUE PHOTOS)
+         ====================================================================== -->
+    <section id="inicio" class="relative bg-white pt-10 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28 overflow-hidden">
+      <!-- Subtle Minimalist Musical Staff Line Accent on Pure White -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <svg class="w-full h-full opacity-[0.045]" viewBox="0 0 1440 600" fill="none" preserveAspectRatio="none">
+          <path d="M-40 160 C 320 90, 680 240, 1480 130" stroke="#0B3C91" stroke-width="2" />
+          <path d="M-40 185 C 320 115, 680 265, 1480 155" stroke="#0B3C91" stroke-width="2" />
+          <path d="M-40 210 C 320 140, 680 290, 1480 180" stroke="#0B3C91" stroke-width="2" />
+          <path d="M-40 235 C 320 165, 680 315, 1480 205" stroke="#E11D2A" stroke-width="2" />
+          <path d="M-40 260 C 320 190, 680 340, 1480 230" stroke="#0B3C91" stroke-width="2" />
+        </svg>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+
+          <!-- Studio Pill Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-7">
+            <span class="w-2.5 h-2.5 rounded-full bg-ebenezer-red animate-ping"></span>
+            <span class="text-xs sm:text-sm font-bold tracking-wide uppercase text-ebenezer-blue">
+              Matrículas Abertas • Todas as Idades e Níveis
+            </span>
+          </div>
+
+          <!-- Hero Headline -->
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.12] mb-6">
+            Aprenda Música com
+            <span class="text-ebenezer-blue">Técnica</span>,
+            <span class="text-ebenezer-red">Emoção</span> e
+            <span class="text-ebenezer-blue">Propósito</span>
+          </h1>
+
+          <!-- Hero Description -->
+          <p class="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
+            Na <strong class="font-semibold text-slate-900">Escola de Música Ebenezer Music</strong>, você desenvolve seu talento com aulas práticas e teóricas personalizadas em
+            <span class="font-semibold text-ebenezer-blue">Bateria, Técnica Vocal, Guitarra, Violão e Violino</span> — do primeiro acorde até o domínio do palco.
+          </p>
+
+          <!-- Primary Animated "Saiba Mais" Button -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <div class="pulse-ring-wrapper">
+              <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20da%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="btn-saiba-mais rounded-full bg-ebenezer-red hover:bg-ebenezer-redDark text-white font-display font-bold text-base sm:text-lg px-9 py-4 shadow-cta-red">
+                <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.359a9.93 9.93 0 0 0 4.843 1.258h.004c5.515 0 9.968-4.453 9.968-9.969A9.927 9.927 0 0 0 19.08 4.92 9.914 9.914 0 0 0 12.031 2zm5.822 14.273c-.246.693-1.428 1.326-1.992 1.409-.513.076-1.162.108-1.875-.118-.434-.138-.991-.322-1.703-.63-2.996-1.293-4.953-4.312-5.103-4.512-.15-.2-1.219-1.621-1.219-3.093 0-1.472.771-2.196 1.045-2.496.274-.3.598-.375.797-.375.199 0 .399.002.573.01.184.009.43-.07.673.514.249.599.847 2.07.922 2.22.075.15.125.325.025.524-.1.2-.15.325-.299.5-.15.175-.314.39-.449.524-.15.15-.306.312-.131.612.175.3.776 1.281 1.667 2.075 1.146 1.022 2.112 1.339 2.411 1.489.299.15.474.125.648-.075.175-.2.748-.874.948-1.174.199-.3.399-.25.673-.15.274.1 1.745.823 2.044.973.299.15.499.225.573.35.075.125.075.724-.171 1.417z"/>
+                </svg>
+                <span>Saiba Mais</span>
+                <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            </div>
+
+            <a href="#cursos"
+               class="inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-ebenezer-blueLight text-ebenezer-blue border-2 border-ebenezer-blue/20 hover:border-ebenezer-blue font-display font-bold text-base px-8 py-3.5 transition-all duration-200">
+              <span>Conhecer os 5 Cursos</span>
+            </a>
+          </div>
+
+          <!-- Clean Studio Instrument Quick-Jump Pills -->
+          <div class="mt-12 pt-8 border-t border-slate-100 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 mr-1">Modalidades:</span>
+            <a href="#curso-bateria" class="px-4 py-1.5 rounded-full bg-white border border-slate-200 hover:border-ebenezer-blue text-xs sm:text-sm font-semibold text-slate-700 hover:text-ebenezer-blue transition-colors shadow-xs">Bateria</a>
+            <a href="#curso-vocal" class="px-4 py-1.5 rounded-full bg-white border border-slate-200 hover:border-ebenezer-red text-xs sm:text-sm font-semibold text-slate-700 hover:text-ebenezer-red transition-colors shadow-xs">Técnica Vocal</a>
+            <a href="#curso-guitarra" class="px-4 py-1.5 rounded-full bg-white border border-slate-200 hover:border-ebenezer-blue text-xs sm:text-sm font-semibold text-slate-700 hover:text-ebenezer-blue transition-colors shadow-xs">Guitarra</a>
+            <a href="#curso-violao" class="px-4 py-1.5 rounded-full bg-white border border-slate-200 hover:border-ebenezer-red text-xs sm:text-sm font-semibold text-slate-700 hover:text-ebenezer-red transition-colors shadow-xs">Violão</a>
+            <a href="#curso-violino" class="px-4 py-1.5 rounded-full bg-white border border-slate-200 hover:border-ebenezer-blue text-xs sm:text-sm font-semibold text-slate-700 hover:text-ebenezer-blue transition-colors shadow-xs">Violino</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         COURSES GRID SECTION ("NOSSOS CURSOS" - PURE WHITE STUDIO CARDS)
+         ====================================================================== -->
+    <section id="cursos" class="bg-white py-16 sm:py-24 border-t border-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal-section">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-ebenezer-red bg-ebenezer-redLight px-3.5 py-1.5 rounded-full mb-3">
+            Formação Musical Completa
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight mb-4">
+            Nossos <span class="text-ebenezer-blue">Cursos</span>
+          </h2>
+          <p class="text-base sm:text-lg text-slate-600">
+            Escolha o seu instrumento ou aperfeiçoe sua voz. Nossas aulas combinam prática guiada, percepção musical e repertório adaptado ao seu objetivo.
+          </p>
+        </div>
+
+        <!-- 5 Instrument Cards Grid (Centered responsive flex/grid layout on pure white) -->
+        <div class="flex flex-wrap justify-center gap-8">
+
+          <!-- ================================================================
+               CARD 1: BATERIA
+               ================================================================ -->
+          <article id="curso-bateria" class="course-card reveal-section w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.35rem)] bg-white rounded-3xl border border-slate-200/90 shadow-studio hover:shadow-studio-hover transition-all duration-300 flex flex-col overflow-hidden">
+            <!-- Pure White Studio Photo + Fallback Illustration Container -->
+            <div class="relative bg-white aspect-[4/3] w-full overflow-hidden border-b border-slate-100 flex items-center justify-center p-4">
+              <img src="bateria.jpg"
+                   alt="Aluno aprendendo a tocar bateria na Escola de Música Ebenezer Music"
+                   class="instrument-visual w-full h-full object-contain bg-white"
+                   onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+
+              <!-- Pure White Studio Vector Illustration: Student Learning Drums -->
+              <svg class="hidden instrument-visual w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de aluno aprendendo bateria em fundo branco">
+                <rect width="400" height="300" fill="#FFFFFF" />
+                <!-- Subtle Studio Ground Shadow -->
+                <ellipse cx="205" cy="264" rx="135" ry="12" fill="#F1F5F9" />
+                <!-- Floating Musical Notes -->
+                <path d="M88 68 V42 L106 37 V63" stroke="#0B3C91" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="83" cy="68" r="5" fill="#0B3C91" />
+                <circle cx="101" cy="63" r="5" fill="#0B3C91" />
+                <path d="M312 62 V38 L326 43" stroke="#E11D2A" stroke-width="3" stroke-linecap="round" />
+                <circle cx="307" cy="62" r="5" fill="#E11D2A" />
+
+                <!-- Student Sitting & Playing -->
+                <!-- Stool -->
+                <rect x="112" y="210" width="38" height="10" rx="5" fill="#1E293B" />
+                <line x1="131" y1="220" x2="131" y2="262" stroke="#475569" stroke-width="5" stroke-linecap="round" />
+                <line x1="115" y1="262" x2="147" y2="262" stroke="#475569" stroke-width="5" stroke-linecap="round" />
+                <!-- Student Legs -->
+                <path d="M135 204 L168 206 L176 258" stroke="#0B3C91" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" />
+                <!-- Student Torso (Royal Blue Polo/Tee) -->
+                <path d="M116 140 C116 126, 148 126, 152 142 L156 206 L114 206 Z" fill="#0B3C91" />
+                <!-- Student Head -->
+                <circle cx="136" cy="103" r="21" fill="#FBBF8B" />
+                <!-- Hair -->
+                <path d="M115 101 C115 84, 130 78, 146 81 C156 83, 159 92, 157 98 C149 91, 132 90, 115 101 Z" fill="#1E293B" />
+                <!-- Student Arms Holding Drumsticks -->
+                <path d="M144 144 L176 164 L196 154" stroke="#FBBF8B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M126 146 L158 174 L184 170" stroke="#F59E6C" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+                <!-- Drumsticks -->
+                <line x1="192" y1="156" x2="232" y2="134" stroke="#D97706" stroke-width="3.5" stroke-linecap="round" />
+                <line x1="180" y1="171" x2="218" y2="177" stroke="#D97706" stroke-width="3.5" stroke-linecap="round" />
+
+                <!-- Drum Kit (Studio Crimson Red & Chrome) -->
+                <!-- Cymbal Stands & Cymbals -->
+                <line x1="196" y1="108" x2="196" y2="262" stroke="#64748B" stroke-width="3.5" />
+                <ellipse cx="196" cy="108" rx="34" ry="6" fill="#F59E0B" />
+                <line x1="296" y1="120" x2="296" y2="262" stroke="#64748B" stroke-width="3.5" />
+                <ellipse cx="296" cy="120" rx="36" ry="6.5" fill="#F59E0B" />
+
+                <!-- Snare Drum -->
+                <rect x="174" y="176" width="44" height="22" rx="4" fill="#FFFFFF" stroke="#0B3C91" stroke-width="3" />
+                <line x1="196" y1="198" x2="196" y2="262" stroke="#64748B" stroke-width="3.5" />
+
+                <!-- Rack Tom -->
+                <rect x="218" y="144" width="38" height="26" rx="5" fill="#E11D2A" />
+                <ellipse cx="237" cy="144" rx="19" ry="4" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5" />
+
+                <!-- Floor Tom -->
+                <rect x="268" y="178" width="44" height="44" rx="5" fill="#E11D2A" />
+                <line x1="274" y1="222" x2="270" y2="262" stroke="#64748B" stroke-width="3" />
+                <line x1="306" y1="222" x2="310" y2="262" stroke="#64748B" stroke-width="3" />
+
+                <!-- Bass Drum -->
+                <circle cx="238" cy="222" r="40" fill="#E11D2A" stroke="#991B1B" stroke-width="3" />
+                <circle cx="238" cy="222" r="32" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+                <circle cx="238" cy="222" r="9" fill="#0B3C91" />
+              </svg>
+
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-ebenezer-blueLight text-ebenezer-blue text-xs font-bold">
+                Percussão &amp; Ritmo
+              </span>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 sm:p-7 flex-1 flex flex-col">
+              <h3 class="font-display font-bold text-2xl text-slate-900 mb-2">Bateria</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                Domine o tempo, a precisão rítmica e a independência motora com prática real desde a primeira aula.
+              </p>
+
+              <ul class="space-y-2.5 text-sm text-slate-700 mb-7 flex-1">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Coordenação motora independente (mãos e pés)</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Grooves modernos, dinâmicas e viradas criativas</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Rudimentos essenciais e leitura rítmica aplicada</span>
+                </li>
+              </ul>
+
+              <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20Bateria%20na%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="btn-saiba-mais w-full rounded-2xl bg-ebenezer-blue hover:bg-ebenezer-blueDark text-white font-display font-bold text-sm py-3.5 px-5 shadow-cta-blue">
+                <span>Saiba Mais</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- ================================================================
+               CARD 2: TÉCNICA VOCAL
+               ================================================================ -->
+          <article id="curso-vocal" class="course-card reveal-section w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.35rem)] bg-white rounded-3xl border border-slate-200/90 shadow-studio hover:shadow-studio-hover transition-all duration-300 flex flex-col overflow-hidden">
+            <!-- Pure White Studio Photo + Fallback Illustration Container -->
+            <div class="relative bg-white aspect-[4/3] w-full overflow-hidden border-b border-slate-100 flex items-center justify-center p-4">
+              <img src="tecnica-vocal.jpg"
+                   alt="Aluna praticando técnica vocal no microfone na Escola de Música Ebenezer Music"
+                   class="instrument-visual w-full h-full object-contain bg-white"
+                   onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+
+              <!-- Pure White Studio Vector Illustration: Student Practicing Vocal Technique -->
+              <svg class="hidden instrument-visual w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de aluna aprendendo técnica vocal em fundo branco">
+                <rect width="400" height="300" fill="#FFFFFF" />
+                <ellipse cx="200" cy="266" rx="115" ry="11" fill="#F1F5F9" />
+
+                <!-- Vocal Soundwaves & Notes -->
+                <path d="M248 92 C260 102, 260 122, 248 132" stroke="#E11D2A" stroke-width="3" stroke-linecap="round" />
+                <path d="M262 82 C280 98, 280 126, 262 142" stroke="#0B3C91" stroke-width="3" stroke-linecap="round" />
+                <path d="M294 66 V40 L314 35 V61" stroke="#E11D2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="289" cy="66" r="5" fill="#E11D2A" />
+                <circle cx="309" cy="61" r="5" fill="#E11D2A" />
+
+                <!-- Student Singer -->
+                <!-- Hair Back -->
+                <path d="M134 94 C124 118, 126 154, 136 172 L182 172 C190 150, 188 114, 178 94 Z" fill="#1E293B" />
+                <!-- Torso (Crimson Red Studio Top) -->
+                <path d="M128 148 C130 132, 182 132, 186 148 L194 235 L122 235 Z" fill="#E11D2A" />
+                <!-- Neck & Face -->
+                <rect x="150" y="118" width="14" height="18" rx="6" fill="#FBBF8B" />
+                <circle cx="158" cy="96" r="24" fill="#FBBF8B" />
+                <!-- Hair Front -->
+                <path d="M134 94 C136 74, 156 68, 174 75 C184 80, 186 92, 182 100 C172 88, 152 86, 134 94 Z" fill="#1E293B" />
+                <!-- Expressive Singing Smile -->
+                <path d="M162 104 C166 108, 172 108, 175 104" stroke="#991B1B" stroke-width="2.5" stroke-linecap="round" />
+                <!-- Arm Raised Holding Sheet / Posture -->
+                <path d="M134 152 L116 188 L146 196" stroke="#FBBF8B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M180 152 L202 178 L216 152" stroke="#FBBF8B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+
+                <!-- Studio Condenser Microphone on Stand -->
+                <line x1="226" y1="126" x2="226" y2="264" stroke="#334155" stroke-width="4.5" stroke-linecap="round" />
+                <path d="M202 264 L226 254 L250 264" stroke="#334155" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                <!-- Pop Filter -->
+                <circle cx="204" cy="112" r="14" fill="#0B3C91" fill-opacity="0.14" stroke="#0B3C91" stroke-width="2.5" />
+                <path d="M204 126 Q214 134 226 132" stroke="#475569" stroke-width="2.5" fill="none" />
+                <!-- Microphone Capsule -->
+                <rect x="218" y="92" width="16" height="32" rx="8" fill="#0B3C91" />
+                <rect x="218" y="92" width="16" height="15" rx="7.5" fill="#94A3B8" />
+              </svg>
+
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-ebenezer-redLight text-ebenezer-red text-xs font-bold">
+                Canto &amp; Expressão
+              </span>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 sm:p-7 flex-1 flex flex-col">
+              <h3 class="font-display font-bold text-2xl text-slate-900 mb-2">Técnica Vocal</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                Desenvolva potência, afinação segura e identidade vocal cuidando da saúde da sua voz.
+              </p>
+
+              <ul class="space-y-2.5 text-sm text-slate-700 mb-7 flex-1">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-blue shrink-0"></span>
+                  <span>Respiração diafragmática, apoio e projeção vocal</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-blue shrink-0"></span>
+                  <span>Afinação precisa, extensão e controle de registros</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-blue shrink-0"></span>
+                  <span>Saúde vocal, dicção e interpretação de repertório</span>
+                </li>
+              </ul>
+
+              <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20T%C3%A9cnica%20Vocal%20na%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="btn-saiba-mais w-full rounded-2xl bg-ebenezer-red hover:bg-ebenezer-redDark text-white font-display font-bold text-sm py-3.5 px-5 shadow-cta-red">
+                <span>Saiba Mais</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- ================================================================
+               CARD 3: GUITARRA
+               ================================================================ -->
+          <article id="curso-guitarra" class="course-card reveal-section w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.35rem)] bg-white rounded-3xl border border-slate-200/90 shadow-studio hover:shadow-studio-hover transition-all duration-300 flex flex-col overflow-hidden">
+            <!-- Pure White Studio Photo + Fallback Illustration Container -->
+            <div class="relative bg-white aspect-[4/3] w-full overflow-hidden border-b border-slate-100 flex items-center justify-center p-4">
+              <img src="guitarra.jpg"
+                   alt="Aluno aprendendo guitarra elétrica na Escola de Música Ebenezer Music"
+                   class="instrument-visual w-full h-full object-contain bg-white"
+                   onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+
+              <!-- Pure White Studio Vector Illustration: Student Learning Electric Guitar -->
+              <svg class="hidden instrument-visual w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de aluno aprendendo guitarra em fundo branco">
+                <rect width="400" height="300" fill="#FFFFFF" />
+                <ellipse cx="205" cy="266" rx="125" ry="11" fill="#F1F5F9" />
+
+                <!-- Studio Guitar Amp -->
+                <rect x="278" y="184" width="66" height="76" rx="8" fill="#1E293B" />
+                <rect x="285" y="198" width="52" height="54" rx="4" fill="#334155" />
+                <circle cx="311" cy="225" r="18" stroke="#64748B" stroke-width="2" />
+                <circle cx="292" cy="191" r="2.5" fill="#E11D2A" />
+                <circle cx="301" cy="191" r="2.5" fill="#FBBF24" />
+                <!-- Guitar Cable -->
+                <path d="M222 196 C236 244, 260 250, 278 214" stroke="#0B3C91" stroke-width="3" fill="none" />
+
+                <!-- Musical Riff Notes -->
+                <path d="M276 74 L296 64 V88" stroke="#E11D2A" stroke-width="3" stroke-linecap="round" />
+                <circle cx="271" cy="76" r="5" fill="#E11D2A" />
+                <circle cx="291" cy="88" r="5" fill="#E11D2A" />
+
+                <!-- Student Playing Guitar -->
+                <!-- Legs -->
+                <path d="M150 202 L144 262" stroke="#1E293B" stroke-width="16" stroke-linecap="round" />
+                <path d="M182 202 L192 262" stroke="#1E293B" stroke-width="16" stroke-linecap="round" />
+                <!-- Torso (Royal Blue) -->
+                <path d="M138 134 C140 120, 192 120, 196 134 L200 206 L136 206 Z" fill="#0B3C91" />
+                <!-- Head -->
+                <circle cx="168" cy="94" r="22" fill="#FBBF8B" />
+                <path d="M146 92 C146 72, 166 66, 184 73 C192 77, 193 88, 190 94 C180 84, 160 83, 146 92 Z" fill="#0F172A" />
+
+                <!-- Electric Guitar Body (Crimson Red) -->
+                <g transform="rotate(-18 190 175)">
+                  <path d="M145 162 C132 152, 122 164, 128 178 C120 190, 134 206, 152 198 C166 192, 178 194, 186 184 C192 174, 184 158, 170 162 C162 164, 154 168, 145 162 Z" fill="#E11D2A" />
+                  <!-- White Pickguard -->
+                  <path d="M152 168 C162 166, 176 168, 180 178 C174 188, 160 188, 152 184 Z" fill="#FFFFFF" />
+                  <!-- Neck & Fretboard -->
+                  <rect x="182" y="172" width="76" height="8" rx="2" fill="#D97706" />
+                  <!-- Headstock -->
+                  <path d="M258 170 L276 167 L278 181 L258 180 Z" fill="#E11D2A" />
+                </g>
+
+                <!-- Student Arms -->
+                <path d="M144 142 L148 178 L168 180" stroke="#FBBF8B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M192 142 L222 156 L236 146" stroke="#FBBF8B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-ebenezer-blueLight text-ebenezer-blue text-xs font-bold">
+                Cordas Elétricas &amp; Solo
+              </span>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 sm:p-7 flex-1 flex flex-col">
+              <h3 class="font-display font-bold text-2xl text-slate-900 mb-2">Guitarra</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                Explore bases marcantes, escalas, improvisação e construção de timbre com segurança técnica.
+              </p>
+
+              <ul class="space-y-2.5 text-sm text-slate-700 mb-7 flex-1">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Acordes, power chords, riffs e harmonia aplicada</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Escalas, improvisação, bends e fraseado expressivo</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Técnica de palhetada, efeitos e timbragem</span>
+                </li>
+              </ul>
+
+              <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20Guitarra%20na%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="btn-saiba-mais w-full rounded-2xl bg-ebenezer-blue hover:bg-ebenezer-blueDark text-white font-display font-bold text-sm py-3.5 px-5 shadow-cta-blue">
+                <span>Saiba Mais</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- ================================================================
+               CARD 4: VIOLÃO
+               ================================================================ -->
+          <article id="curso-violao" class="course-card reveal-section w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.35rem)] bg-white rounded-3xl border border-slate-200/90 shadow-studio hover:shadow-studio-hover transition-all duration-300 flex flex-col overflow-hidden">
+            <!-- Pure White Studio Photo + Fallback Illustration Container -->
+            <div class="relative bg-white aspect-[4/3] w-full overflow-hidden border-b border-slate-100 flex items-center justify-center p-4">
+              <img src="violao.jpg"
+                   alt="Aluno aprendendo violão na Escola de Música Ebenezer Music"
+                   class="instrument-visual w-full h-full object-contain bg-white"
+                   onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+
+              <!-- Pure White Studio Vector Illustration: Student Learning Acoustic Guitar -->
+              <svg class="hidden instrument-visual w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de aluno aprendendo violão em fundo branco">
+                <rect width="400" height="300" fill="#FFFFFF" />
+                <ellipse cx="200" cy="266" rx="125" ry="11" fill="#F1F5F9" />
+
+                <!-- Sheet Music Stand -->
+                <line x1="305" y1="138" x2="305" y2="262" stroke="#475569" stroke-width="4" stroke-linecap="round" />
+                <path d="M285 262 L305 252 L325 262" stroke="#475569" stroke-width="4" stroke-linecap="round" />
+                <polygon points="278,108 332,116 328,146 274,138" fill="#0B3C91" />
+                <polygon points="282,112 327,119 324,141 279,134" fill="#FFFFFF" />
+
+                <!-- Harmony Notes -->
+                <path d="M98 76 V50 L116 45 V71" stroke="#E11D2A" stroke-width="3" stroke-linecap="round" />
+                <circle cx="93" cy="76" r="5" fill="#E11D2A" />
+                <circle cx="111" cy="71" r="5" fill="#E11D2A" />
+
+                <!-- Student Seated Playing Acoustic Guitar -->
+                <rect x="136" y="210" width="68" height="10" rx="5" fill="#334155" />
+                <line x1="148" y1="220" x2="144" y2="262" stroke="#475569" stroke-width="5" stroke-linecap="round" />
+                <line x1="192" y1="220" x2="196" y2="262" stroke="#475569" stroke-width="5" stroke-linecap="round" />
+
+                <!-- Student Torso (Crisp Studio White/Blue Shirt) -->
+                <path d="M138 134 C140 120, 194 120, 198 134 L202 210 L136 210 Z" fill="#0B3C91" />
+                <!-- Student Head -->
+                <circle cx="168" cy="94" r="22" fill="#FBBF8B" />
+                <path d="M146 92 C148 72, 168 68, 184 74 C192 78, 192 88, 188 94 C178 84, 160 84, 146 92 Z" fill="#1E293B" />
+
+                <!-- Acoustic Guitar (Violão) -->
+                <g transform="rotate(-14 185 182)">
+                  <ellipse cx="152" cy="184" rx="26" ry="22" fill="#D97706" />
+                  <ellipse cx="182" cy="184" rx="20" ry="17" fill="#D97706" />
+                  <!-- Soundhole -->
+                  <circle cx="174" cy="184" r="8" fill="#451A03" stroke="#FDE68A" stroke-width="2" />
+                  <!-- Bridge -->
+                  <rect x="142" y="177" width="4" height="14" rx="1" fill="#451A03" />
+                  <!-- Neck -->
+                  <rect x="198" y="180" width="66" height="8" rx="2" fill="#78350F" />
+                  <!-- Headstock -->
+                  <rect x="264" y="178" width="16" height="12" rx="3" fill="#92400E" />
+                </g>
+
+                <!-- Student Arms -->
+                <path d="M144 144 L148 182 L172 184" stroke="#FBBF8B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M194 144 L224 166 L242 158" stroke="#FBBF8B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-ebenezer-redLight text-ebenezer-red text-xs font-bold">
+                Harmonia &amp; Acompanhamento
+              </span>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 sm:p-7 flex-1 flex flex-col">
+              <h3 class="font-display font-bold text-2xl text-slate-900 mb-2">Violão</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                Aprenda batidas, dedilhados e harmonia funcional para tocar suas músicas favoritas com fluidez.
+              </p>
+
+              <ul class="space-y-2.5 text-sm text-slate-700 mb-7 flex-1">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-blue shrink-0"></span>
+                  <span>Formação de acordes, pestanas e troca ágil</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-blue shrink-0"></span>
+                  <span>Dedilhado, levadas rítmicas e percepção harmônica</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-blue shrink-0"></span>
+                  <span>Repertório popular, MPB, worship e instrumental</span>
+                </li>
+              </ul>
+
+              <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20Viol%C3%A3o%20na%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="btn-saiba-mais w-full rounded-2xl bg-ebenezer-red hover:bg-ebenezer-redDark text-white font-display font-bold text-sm py-3.5 px-5 shadow-cta-red">
+                <span>Saiba Mais</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- ================================================================
+               CARD 5: VIOLINO
+               ================================================================ -->
+          <article id="curso-violino" class="course-card reveal-section w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.35rem)] bg-white rounded-3xl border border-slate-200/90 shadow-studio hover:shadow-studio-hover transition-all duration-300 flex flex-col overflow-hidden">
+            <!-- Pure White Studio Photo + Fallback Illustration Container -->
+            <div class="relative bg-white aspect-[4/3] w-full overflow-hidden border-b border-slate-100 flex items-center justify-center p-4">
+              <img src="violino.jpg"
+                   alt="Aluno aprendendo violino na Escola de Música Ebenezer Music"
+                   class="instrument-visual w-full h-full object-contain bg-white"
+                   onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+
+              <!-- Pure White Studio Vector Illustration: Student Learning Violin -->
+              <svg class="hidden instrument-visual w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de aluno aprendendo violino em fundo branco">
+                <rect width="400" height="300" fill="#FFFFFF" />
+                <ellipse cx="200" cy="268" rx="115" ry="11" fill="#F1F5F9" />
+
+                <!-- Sheet Music Stand -->
+                <line x1="296" y1="126" x2="296" y2="264" stroke="#475569" stroke-width="4" stroke-linecap="round" />
+                <path d="M276 264 L296 254 L316 264" stroke="#475569" stroke-width="4" stroke-linecap="round" />
+                <polygon points="270,96 322,104 318,134 266,126" fill="#E11D2A" />
+                <polygon points="274,100 317,107 314,129 271,122" fill="#FFFFFF" />
+
+                <!-- Classical Treble / Musical Notes -->
+                <path d="M98 72 V44 L118 39 V67" stroke="#0B3C91" stroke-width="3" stroke-linecap="round" />
+                <circle cx="93" cy="72" r="5" fill="#0B3C91" />
+                <circle cx="113" cy="67" r="5" fill="#0B3C91" />
+
+                <!-- Student Standing & Playing Violin -->
+                <!-- Legs -->
+                <line x1="154" y1="204" x2="150" y2="264" stroke="#1E293B" stroke-width="15" stroke-linecap="round" />
+                <line x1="180" y1="204" x2="186" y2="264" stroke="#1E293B" stroke-width="15" stroke-linecap="round" />
+                <!-- Torso (Royal Blue) -->
+                <path d="M138 132 C140 118, 192 118, 196 132 L198 206 L138 206 Z" fill="#0B3C91" />
+                <!-- Student Head Tilted Toward Chinrest -->
+                <circle cx="166" cy="92" r="22" fill="#FBBF8B" />
+                <path d="M144 90 C146 70, 166 66, 182 72 C190 76, 190 86, 186 92 C176 82, 158 82, 144 90 Z" fill="#1E293B" />
+
+                <!-- Violin -->
+                <g transform="rotate(-10 198 124)">
+                  <ellipse cx="182" cy="124" rx="16" ry="12" fill="#B45309" />
+                  <ellipse cx="202" cy="124" rx="12" ry="9.5" fill="#B45309" />
+                  <!-- Chinrest -->
+                  <ellipse cx="172" cy="126" rx="6" ry="4" fill="#1E293B" />
+                  <!-- Neck & Scroll -->
+                  <rect x="212" y="121.5" width="38" height="5" rx="2" fill="#451A03" />
+                  <circle cx="252" cy="124" r="4" fill="#B45309" />
+                </g>
+
+                <!-- Violin Bow -->
+                <line x1="194" y1="90" x2="216" y2="178" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" />
+                <line x1="197" y1="90" x2="219" y2="178" stroke="#E2E8F0" stroke-width="1.5" />
+
+                <!-- Student Arms -->
+                <path d="M144 140 L176 164 L212 156" stroke="#FBBF8B" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M192 138 L224 146 L236 124" stroke="#FBBF8B" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-ebenezer-blueLight text-ebenezer-blue text-xs font-bold">
+                Cordas Friccionadas
+              </span>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 sm:p-7 flex-1 flex flex-col">
+              <h3 class="font-display font-bold text-2xl text-slate-900 mb-2">Violino</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                Construa postura elegante, sonoridade limpa e leitura musical com acompanhamento passo a passo.
+              </p>
+
+              <ul class="space-y-2.5 text-sm text-slate-700 mb-7 flex-1">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Postura, empunhadura e controle preciso do arco</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Afinação auditiva, escalas e emissão sonora limpa</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-1 w-2 h-2 rounded-full bg-ebenezer-red shrink-0"></span>
+                  <span>Leitura de partitura e repertório erudito e atual</span>
+                </li>
+              </ul>
+
+              <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20Violino%20na%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="btn-saiba-mais w-full rounded-2xl bg-ebenezer-blue hover:bg-ebenezer-blueDark text-white font-display font-bold text-sm py-3.5 px-5 shadow-cta-blue">
+                <span>Saiba Mais</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         METHODOLOGY & DIFFERENTIALS SECTION (PURE STUDIO WHITE)
+         ====================================================================== -->
+    <section id="metodologia" class="bg-white py-16 sm:py-24 border-t border-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal-section">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-ebenezer-blue bg-ebenezer-blueLight px-3.5 py-1.5 rounded-full mb-3">
+            Por Que Estudar Conosco
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-4">
+            Metodologia <span class="text-ebenezer-red">Prática</span> e Personalizada
+          </h2>
+          <p class="text-base sm:text-lg text-slate-600">
+            Cada aluno possui seu próprio ritmo e objetivo musical. Nosso ensino une fundamentos sólidos à alegria de fazer música de verdade.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
+          <!-- Differential 1 -->
+          <div class="reveal-section bg-white rounded-3xl p-7 border border-slate-200/90 shadow-studio hover:border-ebenezer-blue/40 transition-colors">
+            <div class="w-12 h-12 rounded-2xl bg-ebenezer-blueLight text-ebenezer-blue flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Prática desde o 1º Dia</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Você já inicia tocando ou cantando desde a primeira aula, aplicando a teoria musical diretamente no seu instrumento.
+            </p>
+          </div>
+
+          <!-- Differential 2 -->
+          <div class="reveal-section bg-white rounded-3xl p-7 border border-slate-200/90 shadow-studio hover:border-ebenezer-red/40 transition-colors">
+            <div class="w-12 h-12 rounded-2xl bg-ebenezer-redLight text-ebenezer-red flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Atenção Individualizada</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Acompanhamento próximo do professor para corrigir postura, técnica e acelerar sua evolução com segurança.
+            </p>
+          </div>
+
+          <!-- Differential 3 -->
+          <div class="reveal-section bg-white rounded-3xl p-7 border border-slate-200/90 shadow-studio hover:border-ebenezer-blue/40 transition-colors">
+            <div class="w-12 h-12 rounded-2xl bg-ebenezer-blueLight text-ebenezer-blue flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Todas as Idades e Níveis</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Planos de estudo adaptados para crianças, jovens e adultos — seja você iniciante absoluto ou músico em aperfeiçoamento.
+            </p>
+          </div>
+
+          <!-- Differential 4 -->
+          <div class="reveal-section bg-white rounded-3xl p-7 border border-slate-200/90 shadow-studio hover:border-ebenezer-red/40 transition-colors">
+            <div class="w-12 h-12 rounded-2xl bg-ebenezer-redLight text-ebenezer-red flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Repertório e Material</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Exercícios progressivos, leitura musical e seleção de músicas que mantêm sua motivação sempre em alta.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CALL-TO-ACTION BANNER (PURE STUDIO WHITE WITH BRAND BORDER ACCENTS)
+         ====================================================================== -->
+    <section id="contato" class="bg-white py-14 sm:py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal-section">
+        <div class="relative bg-white rounded-[2rem] border-2 border-ebenezer-blue/15 shadow-studio p-8 sm:p-12 lg:p-16 text-center overflow-hidden">
+          <!-- Top Brand Accent Bar -->
+          <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-ebenezer-blue via-ebenezer-red to-ebenezer-blue"></div>
+
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-ebenezer-redLight text-ebenezer-red text-xs font-bold uppercase tracking-wider mb-5">
+            Atendimento Direto pelo WhatsApp
+          </span>
+
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight max-w-3xl mx-auto mb-5">
+            Pronto para Começar Sua Jornada na <span class="text-ebenezer-blue">Ebenezer</span> <span class="text-ebenezer-red">Music</span>?
+          </h2>
+
+          <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-9">
+            Tire suas dúvidas sobre horários disponíveis, valores e modalidades diretamente com nossa equipe pelo WhatsApp.
+          </p>
+
+          <div class="pulse-ring-wrapper">
+            <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20da%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn-saiba-mais rounded-full bg-ebenezer-red hover:bg-ebenezer-redDark text-white font-display font-bold text-base sm:text-lg px-10 py-4 shadow-cta-red">
+              <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.359a9.93 9.93 0 0 0 4.843 1.258h.004c5.515 0 9.968-4.453 9.968-9.969A9.927 9.927 0 0 0 19.08 4.92 9.914 9.914 0 0 0 12.031 2zm5.822 14.273c-.246.693-1.428 1.326-1.992 1.409-.513.076-1.162.108-1.875-.118-.434-.138-.991-.322-1.703-.63-2.996-1.293-4.953-4.312-5.103-4.512-.15-.2-1.219-1.621-1.219-3.093 0-1.472.771-2.196 1.045-2.496.274-.3.598-.375.797-.375.199 0 .399.002.573.01.184.009.43-.07.673.514.249.599.847 2.07.922 2.22.075.15.125.325.025.524-.1.2-.15.325-.299.5-.15.175-.314.39-.449.524-.15.15-.306.312-.131.612.175.3.776 1.281 1.667 2.075 1.146 1.022 2.112 1.339 2.411 1.489.299.15.474.125.648-.075.175-.2.748-.874.948-1.174.199-.3.399-.25.673-.15.274.1 1.745.823 2.044.973.299.15.499.225.573.35.075.125.075.724-.171 1.417z"/>
+              </svg>
+              <span>Saiba Mais</span>
+            </a>
+          </div>
+
+          <p class="mt-4 text-sm font-medium text-slate-500">
+            WhatsApp: <span class="text-slate-800 font-semibold">(31) 99921-8261</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       CLEAN PURE-WHITE STUDIO FOOTER
+       ======================================================================== -->
+  <footer class="bg-white border-t border-slate-100 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+
+        <!-- Revitalized Footer Logo (Strictly without Assembleia de Deus) -->
+        <div class="flex flex-col items-center md:items-start">
+          <svg class="h-11 w-auto mb-3" viewBox="0 0 430 132" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="footerLogoTitle">
+            <title id="footerLogoTitle">Escola de Música Ebenezer Music</title>
+            <path d="M 82 23.5 A 45 45 0 1 0 107.5 46.5"
+                  stroke="#0B3C91"
+                  stroke-width="14.5"
+                  stroke-linecap="round" />
+            <ellipse cx="62" cy="76" rx="18.5" ry="14" transform="rotate(-22 62 76)" fill="#E11D2A" />
+            <path d="M 76.5 72 L 86 11 C 94 21, 108 31, 105 51 C 103 60, 97 65, 93 66 C 96 56, 96 42, 87 34 L 79.5 76 Z"
+                  fill="#E11D2A" />
+            <text x="130" y="37"
+                  fill="#0B3C91"
+                  font-family="'Oswald', 'Plus Jakarta Sans', sans-serif"
+                  font-weight="700"
+                  font-size="21.5"
+                  letter-spacing="1.6">ESCOLA DE MÚSICA</text>
+            <text x="128" y="96"
+                  fill="#E11D2A"
+                  font-family="'Oswald', 'Plus Jakarta Sans', sans-serif"
+                  font-weight="700"
+                  font-size="64"
+                  letter-spacing="1.2">EBENEZER</text>
+            <text x="276" y="114"
+                  stroke="#FFFFFF"
+                  stroke-width="6"
+                  stroke-linejoin="round"
+                  font-family="'Pacifico', cursive"
+                  font-size="34"
+                  transform="rotate(-4 325 104)">Music</text>
+            <text x="276" y="114"
+                  fill="#0B3C91"
+                  font-family="'Pacifico', cursive"
+                  font-size="34"
+                  transform="rotate(-4 325 104)">Music</text>
+          </svg>
+          <p class="text-sm text-slate-500 text-center md:text-left">
+            Formação musical com excelência, dedicação e prática.
+          </p>
+        </div>
+
+        <!-- Footer Navigation & Courses Summary -->
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-slate-600">
+          <a href="#curso-bateria" class="hover:text-ebenezer-blue transition-colors">Bateria</a>
+          <a href="#curso-vocal" class="hover:text-ebenezer-blue transition-colors">Técnica Vocal</a>
+          <a href="#curso-guitarra" class="hover:text-ebenezer-blue transition-colors">Guitarra</a>
+          <a href="#curso-violao" class="hover:text-ebenezer-blue transition-colors">Violão</a>
+          <a href="#curso-violino" class="hover:text-ebenezer-blue transition-colors">Violino</a>
+        </div>
+
+        <!-- Direct WhatsApp Link -->
+        <div class="text-center md:text-right">
+          <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20da%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 text-sm font-bold text-ebenezer-blue hover:text-ebenezer-red transition-colors">
+            <span>WhatsApp: (31) 99921-8261</span>
+          </a>
+          <p class="text-xs text-slate-400 mt-1">
+            &copy; <span id="current-year"></span> Escola de Música Ebenezer Music. Todos os direitos reservados.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       FLOATING ANIMATED WHATSAPP "SAIBA MAIS" BUTTON (BOTTOM-RIGHT)
+       ======================================================================== -->
+  <div class="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50">
+    <div class="pulse-ring-wrapper">
+      <a href="https://wa.me/5531999218261?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20da%20Escola%20de%20M%C3%BAsica%20Ebenezer%20Music."
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Saiba Mais pelo WhatsApp"
+         class="btn-saiba-mais rounded-full bg-ebenezer-red hover:bg-ebenezer-redDark text-white font-display font-bold text-sm sm:text-base px-5 py-3.5 sm:px-6 sm:py-4 shadow-cta-red border-2 border-white">
+        <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.359a9.93 9.93 0 0 0 4.843 1.258h.004c5.515 0 9.968-4.453 9.968-9.969A9.927 9.927 0 0 0 19.08 4.92 9.914 9.914 0 0 0 12.031 2zm5.822 14.273c-.246.693-1.428 1.326-1.992 1.409-.513.076-1.162.108-1.875-.118-.434-.138-.991-.322-1.703-.63-2.996-1.293-4.953-4.312-5.103-4.512-.15-.2-1.219-1.621-1.219-3.093 0-1.472.771-2.196 1.045-2.496.274-.3.598-.375.797-.375.199 0 .399.002.573.01.184.009.43-.07.673.514.249.599.847 2.07.922 2.22.075.15.125.325.025.524-.1.2-.15.325-.299.5-.15.175-.314.39-.449.524-.15.15-.306.312-.131.612.175.3.776 1.281 1.667 2.075 1.146 1.022 2.112 1.339 2.411 1.489.299.15.474.125.648-.075.175-.2.748-.874.948-1.174.199-.3.399-.25.673-.15.274.1 1.745.823 2.044.973.299.15.499.225.573.35.075.125.075.724-.171 1.417z"/>
+        </svg>
+        <span>Saiba Mais</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       INTERACTIVE JAVASCRIPT (MOBILE DRAWER, SCROLL REVEAL & HEADER ELEVATION)
+       ======================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        // 1. Set current year in footer
+        const yearEl = document.getElementById('current-year');
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if (mobileMenuBtn && mobileMenu) {
+          mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden', isHidden);
+            iconClose.classList.toggle('hidden', !isHidden);
+            mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+          });
+
+          // Close mobile menu when clicking a link
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.add('hidden');
+              iconOpen.classList.remove('hidden');
+              iconClose.classList.add('hidden');
+              mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+          });
+        }
+
+        // 3. Subtle Sticky Header Shadow on Scroll
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+          if (!header) return;
+          if (window.scrollY > 16) {
+            header.classList.add('shadow-sm');
+          } else {
+            header.classList.remove('shadow-sm');
+          }
+        }, { passive: true });
+
+        // 4. Intersection Observer for Smooth Card & Section Reveal
+        const revealElements = document.querySelectorAll('.reveal-section');
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -30px 0px'
+          });
+
+          revealElements.forEach((el) => observer.observe(el));
+        } else {
+          // Fallback for older browsers
+          revealElements.forEach((el) => el.classList.add('is-visible'));
+        }
+      } catch (err) {
+        console.error('Erro na inicialização da interface:', err);
+      }
+    });
+  </script>
+</body>
+</html>
